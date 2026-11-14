@@ -1,7 +1,7 @@
 ---
 title: "Building this logbook : Astro and GitHub Pages"
 date: 2026-11-15
-draft: true
+draft: false
 ---
 This is the first project entry of the logbook: building the logbook itself. I built it step by step with an AI assistant that explained each command. I wrote down what went wrong along the way.
 
