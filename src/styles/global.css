@@ -4,7 +4,7 @@
   --text: #c8c8c8;
   --heading: #ffffff;
   --muted: #8a8a8a;
-  --line: #3d3d3d;
+  --line: #555555;
 }
 
 body {
@@ -148,4 +148,5 @@ footer hr {
 
 footer p {
   margin: 0;
+  text-align: center;
 }
