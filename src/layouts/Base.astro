@@ -3,9 +3,24 @@ import '../styles/global.css';
 
 interface Props {
 	title: string;
+	description?: string;
 }
 
-const { title } = Astro.props;
+const {
+	title,
+	description = 'A learning journal on technical topics and projects, by jlnrcs.',
+} = Astro.props;
+
+const path = Astro.url.pathname;
+
+const links = [
+	{ label: 'Learn', href: '/learn/', current: path.startsWith('/learn') },
+	{ label: 'About me', href: '/about/', current: path.startsWith('/about') },
+];
+
+const canonicalURL = new URL(path, Astro.site).href;
+const ogImage = new URL('/og-image.png', Astro.site).href;
+const year = new Date().getFullYear();
 ---
 
 <html lang="en">
@@ -15,14 +30,44 @@ const { title } = Astro.props;
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
+		<meta name="description" content={description} />
+		<link rel="canonical" href={canonicalURL} />
+		<meta property="og:type" content="website" />
+		<meta property="og:site_name" content="Logbook" />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:url" content={canonicalURL} />
+		<meta property="og:image" content={ogImage} />
+		<meta property="og:image:width" content="1200" />
+		<meta property="og:image:height" content="630" />
+		<meta name="twitter:card" content="summary_large_image" />
 	</head>
 	<body>
 		<nav>
-			<a href="/">@jlnrcs : Hello world, again</a>
+			<div class="nav-id">
+				<a href="/">@jlnrcs</a>
+				<span aria-hidden="true">:</span>
+				<span>Hello world</span>
+			</div>
+			<div class="nav-links">
+				{links.map((link, i) => (
+					<>
+						{i > 0 && <span aria-hidden="true">/</span>}
+						<a href={link.href} aria-current={link.current ? 'page' : undefined}>
+							{link.label}
+						</a>
+					</>
+				))}
+			</div>
 		</nav>
 
 		<main>
 			<slot />
 		</main>
+
+		<footer>
+			<hr />
+			<p>© {year} jlnrcs · Code by hand</p>
+		</footer>
 	</body>
 </html>

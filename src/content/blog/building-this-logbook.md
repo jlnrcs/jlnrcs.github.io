@@ -1,5 +1,5 @@
 ---
-title: "Building this logbook : Astro and GitHub Pages"
+title: "Building this logbook : Astro and GitHub"
 date: 2026-11-15
 draft: false
 ---

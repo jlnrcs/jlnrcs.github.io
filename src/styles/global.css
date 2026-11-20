@@ -4,10 +4,14 @@
   --text: #c8c8c8;
   --heading: #ffffff;
   --muted: #8a8a8a;
+  --line: #3d3d3d;
 }
 
 body {
   margin: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
   background: var(--bg);
   color: var(--text);
   font-family: ui-monospace, "Cascadia Code", Consolas, monospace;
@@ -16,15 +20,31 @@ body {
 }
 
 nav,
-main {
+main,
+footer {
+  box-sizing: border-box;
+  width: 100%;
   max-width: 600px;
   margin-inline: auto;
   padding-inline: 1.5rem;
 }
 
+/* Menu */
 nav {
   margin-top: 3rem;
   font-size: 0.8rem;
+  color: var(--muted);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.5rem 2ch;
+}
+
+.nav-id,
+.nav-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 1ch;
 }
 
 nav a {
@@ -32,7 +52,14 @@ nav a {
   text-decoration: none;
 }
 
+nav a:hover,
+nav a[aria-current="page"] {
+  color: var(--heading);
+}
+
+/* Contenu */
 main {
+  flex: 1;
   margin-top: 5rem;
   padding-bottom: 4rem;
 }
@@ -70,7 +97,7 @@ time {
   padding: 0.35rem 0;
 }
 
-/* Page d'un article */
+/* Pages de texte et articles */
 header h1 {
   margin-bottom: 0.5rem;
 }
@@ -104,4 +131,21 @@ article li {
 .signature {
   margin-top: 4rem;
   color: var(--muted);
+}
+
+/* Pied de page */
+footer {
+  margin-bottom: 2rem;
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+footer hr {
+  border: 0;
+  border-top: 1px solid var(--line);
+  margin: 0 0 1rem;
+}
+
+footer p {
+  margin: 0;
 }
